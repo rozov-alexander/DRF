@@ -1,0 +1,10 @@
+# created by virtualenv automatically
+db.sqlite3
+../.idea
+node_modules
+local_settings.py
+.env
+__pycache__
+package-lock.json
+yarn.lock
+.DS_Store
