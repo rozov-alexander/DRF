@@ -10,8 +10,6 @@ class ProjectModelSerializer(ModelSerializer):
 
 
 class NotesModelSerializer(ModelSerializer):
-    users = CustomUserModelSerializer(many=True)
-
     class Meta:
         model = Notes
         fields = '__all__'
