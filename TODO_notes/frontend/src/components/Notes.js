@@ -1,4 +1,6 @@
-const NoteItem = ({notes}) => {
+import { Link } from "react-router-dom"
+
+const NoteItem = ({notes, deleteNote}) => {
     return (
         <tr>
             <td>
@@ -9,12 +11,15 @@ const NoteItem = ({notes}) => {
             </td>
             <td>
                 {notes.user}
-            </td>      
+            </td> 
+            <td>
+                <button onClick={()=>deleteNote(notes.id)}type="button">Delete</button>
+            </td>     
         </tr>
     )
 }
 
-const NotesList = ({notes}) => {
+const NotesList = ({notes, deleteNote}) => {
     return (
         <div class="main">
             <table>
@@ -27,8 +32,10 @@ const NotesList = ({notes}) => {
                 <th>
                     User               
                 </th>
-                {notes.map((notes) => <NoteItem notes={notes} />)}
+                <th></th>
+                {notes.map((notes) => <NoteItem notes={notes} deleteNote={deleteNote}/>)}
             </table>
+            <Link to='/notes/create'>Create</Link>
             <div class="footer">
                 <h4>Какой-то Footer. Все права не защищены!</h4>
             </div>
