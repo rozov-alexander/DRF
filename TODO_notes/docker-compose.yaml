@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:13.5
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: db
+  backend:
+    build:
+      context: .
+    privileged: true
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    command: bash -c "
+      python manage.py migrate &&
+      python manage.py create_users --settings=TODO_notes.settings.prod &&
+      gunicorn TODO_notes.wsgi -b 0.0.0.0:8080
+      "
+    environment:
+      DJANGO_SETTINGS_MODULE: 'TODO_notes.settings.prod'
+  nginx:
+    build: ./nginx 
+    ports:
+      - 8000:80
+    depends_on: 
+      - backend
+  frontend:
+    build: ./frontend 
+    ports:
+      - 80:80
+    depends_on:
+      - nginx
