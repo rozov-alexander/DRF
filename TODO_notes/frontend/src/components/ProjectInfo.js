@@ -1,42 +1,40 @@
-import React from 'react'
+import {useParams} from 'react-router-dom'
 
 
-const UserItem = ({user}) => {
+const NotesItem = ({notes}) => {
     return (
         <tr>
             <td>
-                {user.email}
+                {notes.project}
             </td>
             <td>
-                {user.username}
+                {notes.body}
             </td>
             <td>
-                {user.first_name}
-            </td>
-            <td>
-                {user.last_name}
+                {notes.user}
             </td>
         </tr>
     )
 }
 
-const UserList = ({users}) => {
+
+const ProjectInfo = ({notes}) => {
+    var {id} = useParams()
+    var filteredNotes = notes.filter((notes) => notes.project == id)
+
     return (
         <div class="main">
             <table>
                 <th>
-                    email 
+                    Project
                 </th>
                 <th>
-                    username
+                    Body
                 </th>
                 <th>
-                    First name
+                    User
                 </th>
-                <th>
-                    Last Name
-                </th>
-                {users.map((user) => <UserItem user={user} />)}
+                {filteredNotes.map((notes) => <NotesItem notes={notes} />)}
             </table>
             <div class="footer">
                 <h4>Какой-то Footer. Все права не защищены!</h4>
@@ -45,4 +43,4 @@ const UserList = ({users}) => {
     )
 }
 
-export default UserList
+export default ProjectInfo
