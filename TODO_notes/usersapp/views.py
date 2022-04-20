@@ -6,4 +6,4 @@ from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateMode
 
 class CustomUserViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = CustomUserModelSerializer
-    queryset = CustomUser.objects.all()
+    queryset = CustomUser.objects.get_queryset().order_by('id')

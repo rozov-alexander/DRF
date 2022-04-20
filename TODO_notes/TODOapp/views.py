@@ -11,7 +11,7 @@ class ProjectLimitOffsetPagination(LimitOffsetPagination):
 
 class ProjectViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, CreateModelMixin, DestroyModelMixin, GenericViewSet):
     serializer_class = ProjectModelSerializer
-    queryset = Project.objects.all()
+    queryset = Project.objects.get_queryset().order_by('id')
     filterset_class = ProjectFilter
     # pagination_class = ProjectLimitOffsetPagination
 
@@ -23,7 +23,7 @@ class NotesLimitOffsetPagination(LimitOffsetPagination):
 
 class NotesViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, CreateModelMixin, DestroyModelMixin, GenericViewSet):
     serializer_class = NotesModelSerializer
-    queryset = Notes.objects.all()
+    queryset = Notes.objects.get_queryset().order_by('id')
     filterset_class = NotesFilter
     # pagination_class = NotesLimitOffsetPagination
 
