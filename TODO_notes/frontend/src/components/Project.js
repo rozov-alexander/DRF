@@ -2,7 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 
-const ProjectItem = ({project}) => {
+
+const ProjectItem = ({project, deleteProject}) => {
+    
     return (
         <tr>
             <td>
@@ -13,26 +15,33 @@ const ProjectItem = ({project}) => {
             </td>
             <td>
                 {project.users}
+            </td>
+            <td>
+                <button onClick={()=>deleteProject(project.id)}type='button'>Delete</button>
             </td>      
         </tr>
     )
 }
 
-const ProjectList = ({project}) => {
+const ProjectList = ({project, deleteProject}) => {
+
     return (
         <div class="main">
             <table>
                 <th>
-                    Name 
+                    Name
                 </th>
                 <th>
                     Repo
                 </th>
                 <th>
-                    Users                
+                    Users             
                 </th>
-                {project.map((project) => <ProjectItem project={project} />)}
+                <th></th>
+                {project.map((project) => <ProjectItem project={project} deleteProject={deleteProject}/>)}
             </table>
+            <Link to='/project/create'>Create</Link><br/>
+            <Link to='/project/search'>Search</Link>
             <div class="footer">
                 <h4>Какой-то Footer. Все права не защищены!</h4>
             </div>

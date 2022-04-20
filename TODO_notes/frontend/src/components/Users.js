@@ -2,6 +2,8 @@ import React from 'react'
 
 
 const UserItem = ({user}) => {
+    const isStaff = user.is_staff;
+    const isSuperuser = user.is_superuser;
     return (
         <tr>
             <td>
@@ -16,12 +18,8 @@ const UserItem = ({user}) => {
             <td>
                 {user.email}
             </td>
-            <td>
-                {user.isStaff.toString()}
-            </td>
-            <td>
-                {user.isSuperuser.toString()}
-            </td>
+            { isStaff ? <td>{user.is_staff.toString()}</td> : ''}
+            { isSuperuser ? <td>{user.is_superuser.toString()}</td> : ''}
         </tr>
     )
 }
