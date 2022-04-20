@@ -13,7 +13,7 @@ class ProjectViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, Creat
     serializer_class = ProjectModelSerializer
     queryset = Project.objects.all()
     filterset_class = ProjectFilter
-    pagination_class = ProjectLimitOffsetPagination
+    # pagination_class = ProjectLimitOffsetPagination
 
 
 class NotesLimitOffsetPagination(LimitOffsetPagination):
@@ -25,7 +25,7 @@ class NotesViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, CreateM
     serializer_class = NotesModelSerializer
     queryset = Notes.objects.all()
     filterset_class = NotesFilter
-    pagination_class = NotesLimitOffsetPagination
+    # pagination_class = NotesLimitOffsetPagination
 
 
     def perform_destroy(self, instance):
